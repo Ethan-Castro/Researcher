@@ -1,4 +1,7 @@
 import streamlit as st
+import phidata as phi
+import openai as openai
+import arxiv as arxiv
 from phi.assistant import Assistant
 from phi.llm.openai import OpenAIChat
 from phi.tools.arxiv_toolkit import ArxivToolkit
