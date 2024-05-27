@@ -1,4 +1,3 @@
-pip install pypdf
 import streamlit as st
 from phi.assistant import Assistant
 from phi.llm.openai import OpenAIChat
