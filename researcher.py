@@ -1,12 +1,8 @@
 # Import the required libraries
 import streamlit as st
-try:
-    from phi.assistant import Assistant
-    from phi.llm.openai import OpenAIChat
-    from phi.tools.arxiv_toolkit import ArxivToolkit
-except ImportError as e:
-    st.error(f"Error importing modules: {e}")
-    st.stop()
+from phi.assistant import Assistant
+from phi.llm.openai import OpenAIChat
+from phi.tools.arxiv_toolkit import ArxivToolkit
 
 # Set up the Streamlit app
 st.title("Chat with Arxiv 🔎🤖")
@@ -18,28 +14,21 @@ openai_access_token = st.text_input("OpenAI API Key", type="password")
 # If OpenAI API key is provided, create an instance of Assistant
 if openai_access_token:
     # Create an instance of the Assistant
-    try:
-        assistant = Assistant(
-            llm=OpenAIChat(
-                model="gpt-4o",
-                max_tokens=1024,
-                temperature=0.9,
-                api_key=openai_access_token
-            ),
-            tools=[ArxivToolkit()],
-            show_tool_calls=True
-        )
-    except Exception as e:
-        st.error(f"Error creating Assistant: {e}")
-        st.stop()
+    assistant = Assistant(
+        llm=OpenAIChat(
+            model="gpt-4o",
+            max_tokens=1024,
+            temperature=0.9,
+            api_key=openai_access_token
+        ), 
+        tools=[ArxivToolkit()], 
+        show_tool_calls=True
+    )
 
     # Get the search query from the user
     query = st.text_input("Enter the Search Query", type="default")
     
     if query:
         # Search the web using the AI Assistant
-        try:
-            response = assistant.run(query, stream=False)
-            st.write(response)
-        except Exception as e:
-            st.error(f"Error running query: {e}")
+        response = assistant.run(query, stream=False)
+        st.write(response)
