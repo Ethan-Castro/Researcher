@@ -1,3 +1,5 @@
+!pip install pypdf
+!pip install phidata
 # Import the required libraries
 import streamlit as st
 from phi.assistant import Assistant
