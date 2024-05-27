@@ -1,6 +1,6 @@
 
 # Import the required libraries
-import pypdf
+import pypdf as pypdf
 import streamlit as st
 from phi.assistant import Assistant
 from phi.llm.openai import OpenAIChat
